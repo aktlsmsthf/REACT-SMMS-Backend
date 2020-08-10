@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="warranty">
+
+    <select id="getImage">
+        select img_path from tb_warranty where warranty_srl=#{warranty_srl}
+    </select>
+
+    <select id="getWarranty">
+        select name as warranty_nm from tb_warranty where warranty_srl=#{warranty_srl}
+    </select>
+
+    <select id="getOperation">
+        select operation_ratio, time from tb_log where warranty_srl=#{warranty_srl} and time&gt;=#{start} and time&lt;=#{finish}
+    </select>
+
+    <update id="updateWarranty">
+        update tb_warranty set name=#{name} where warranty_srl=#{warranty_srl}
+    </update>
+
+    <update id="updateImgPath">
+        update tb_warranty set img_path=#{img_path} where warranty_srl=#{warranty_srl}
+    </update>
+
+</mapper>

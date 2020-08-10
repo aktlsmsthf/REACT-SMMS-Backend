@@ -84,7 +84,7 @@ const getCompany = (req, res) => {
         if(err){
 			return res.status(500).json({error:'database failure'});
         }
-        return res.status(200).json(ret.rows);
+        return res.status(200).json({list:ret.rows});
     })
 }
 
@@ -95,9 +95,11 @@ const getWarranty = (req, res) => {
         if(err){
 			return res.status(500).json({error:'database failure'});
         }
-        return res.status(200).json(ret.rows);
+        return res.status(200).json({list:ret.rows});
     }) 
 }
+
+
 
 module.exports = {
     insertCompany,

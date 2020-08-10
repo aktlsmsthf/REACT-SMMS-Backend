@@ -26,4 +26,8 @@
         select warranty_srl, name as warranty_nm from tb_warranty where company_srl=#{company_srl}
     </select>
 
+    <select id="getImage">
+        select img_path from tb_warranty where warranty_srl=#{warranty_srl}
+    </select>
+
 </mapper>
