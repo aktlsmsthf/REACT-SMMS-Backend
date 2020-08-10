@@ -1,7 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="home">
-	<select id="getBranch">
-		SELECT * FROM tb_branch
+
+	<select id="getRank">
+		select coalesce(sum(case when rank='A' then 1 else 0 end), 0) as a_rank, 
+			coalesce(sum(case when rank='B' then 1 else 0 end), 0) as b_rank,
+			coalesce(sum(case when rank='C' then 1 else 0 end), 0) as c_rank 
+		from tb_warranty
+		where company_srl in (select company_srl from tb_company where branch_srl=#{branch_srl})
 	</select>
+
+	<select id="getMap">
+		select lat, lng, rank 
+		from tb_warranty 
+		where company_srl in (select company_srl from tb_branch where branch_srl=#{branch_srl})
+	</select>
+
+	<select id="getWarranty">
+		select c.name as company_nm, w.name as warranty_nm
+		from (select * from tb_company where branch_srl=#{branch_srl}) c 
+			join tb_warranty w on c.company_srl=w.company_srl
+		order by w.created_at desc
+		limit #{limit}
+		offset #{offset}
+	</select>
+
 </mapper>

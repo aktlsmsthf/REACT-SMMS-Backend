@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="company">
+	
+    <insert id="insertCompany">
+        insert into tb_company (branch_srl, name, zonecode, addr, addr_detail, phone)
+        values
+        (#{branch_srl}, #{name}, #{zonecode}, #{addr}, #{addr_detail}, #{phone})
+    </insert>
+
+    <select id="selectCompany">
+        select company_srl from tb_company where name=#{name} order by created_at desc limit 1
+    </select>
+
+    <insert id="insertWarranty">
+        insert into tb_warranty (company_srl, name, img_path, rank, lat, lng)
+        values
+        (#{company_srl}, #{name}, '', #{rank}, #{lat}, #{lng})
+    </insert>
+
+    <select id="getCompany">
+        select company_srl, name as company_nm from tb_company where branch_srl=#{branch_srl}
+    </select>
+
+    <select id="getWarranty">
+        select warranty_srl, name as warranty_nm from tb_warranty where company_srl=#{company_srl}
+    </select>
+
+</mapper>

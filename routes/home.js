@@ -5,6 +5,4 @@ router.get('/rank/:branch_srl', handler.getRank);
 router.get('/map/:branch_srl', handler.getMap);
 router.get('/warranty/:branch_srl', handler.getWarranty);
 
-router.get('/branch', handler.getBranch);
-
 module.exports = router;

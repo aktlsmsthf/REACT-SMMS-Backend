@@ -13,6 +13,8 @@
     "express": "^4.17.1",
     "mongoose": "^5.9.27",
     "mybatis-mapper": "^0.6.5",
-    "pg": "^8.3.0"
+    "package.json": "^2.0.1",
+    "pg": "^8.3.0",
+    "request": "^2.88.2"
   }
 }

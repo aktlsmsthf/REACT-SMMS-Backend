@@ -12,6 +12,7 @@ app.get('/', (req, res)=>{
 })
 
 app.use('/home', require('./routes/home'));
+app.use('/company', require('./routes/company'));
 
 var server = app.listen(port, ()=>{
 	console.log("server on");
